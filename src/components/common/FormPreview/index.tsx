@@ -1,7 +1,6 @@
 import React from "react";
-import "./Result.css";
-
-interface ResultProps {
+import * as S from "./styles";
+interface FormPreviewProps {
   formData: {
     name: string;
     lastName: string;
@@ -12,13 +11,13 @@ interface ResultProps {
   };
 }
 
-export const Result: React.FC<ResultProps> = ({ formData }) => {
+export const FormPreview: React.FC<FormPreviewProps> = ({ formData }) => {
   return (
-    <div className="result-container">
-      <div className="form-preview">
+    <S.FormPreviewContainer>
+      <S.FormPreview>
         <h2>Form Preview</h2>
         <pre>{JSON.stringify(formData, null, 2)}</pre>
-      </div>
-    </div>
+      </S.FormPreview>
+    </S.FormPreviewContainer>
   );
 };

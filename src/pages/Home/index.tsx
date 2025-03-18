@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Result } from "../../components/common/Result";
-import { Form, Inputs } from "../../Form";
-import "./Main.css";
+import { FormPreview } from "../../components/common/FormPreview";
+import { Form, Inputs } from "../../components/ui/Form/Form";
+import * as S from "./styles";
 
-export const Main = () => {
+export const Home = () => {
   const [formData, setFormData] = useState<Inputs>({
     name: "",
     lastName: "",
@@ -18,9 +18,9 @@ export const Main = () => {
   };
 
   return (
-    <main>
+    <S.MainContainer>
       <Form onFormSubmit={handleFormSubmit} />
-      <Result formData={formData} />
-    </main>
+      <FormPreview formData={formData} />
+    </S.MainContainer>
   );
 };
