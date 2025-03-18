@@ -1,18 +1,20 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import logo from "./assets/react.svg";
 
-type Inputs = {
+export type Inputs = {
   name: string;
   lastName: string;
   phone: string;
   email: string;
   country: string;
-  birth: string;
   password: string;
-  confirmPassword: string;
 };
 
-export const Form = () => {
+interface FormProps {
+  onFormSubmit: (data: Inputs) => void;
+}
+
+export const Form: React.FC<FormProps> = ({ onFormSubmit }) => {
   const countries = [
     {
       id: 1,
@@ -73,62 +75,68 @@ export const Form = () => {
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    onFormSubmit(data);
   };
 
   return (
-    <section>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex">
-          <img src={logo} alt="React" className="logo" />
-          <h1>React-Hook-Form</h1>
-        </div>
+    <div>
+      <section>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex">
+            <img src={logo} alt="React" className="logo" />
+            <h1>React-Hook-Form</h1>
+          </div>
 
-        <div className="flex">
+          <div className="flex">
+            <div>
+              <input
+                className="fullname"
+                {...register("name", { required: "Name is required" })}
+                placeholder="Your Name"
+                type="text"
+              />
+              {errors.name && <span>{errors.name.message}</span>}
+            </div>
+
+            <div>
+              <input
+                className="fullname"
+                {...register("lastName", { required: "Last Name is required" })}
+                placeholder="Your Last Name"
+                type="text"
+              />
+              {errors.lastName && <span>{errors.lastName.message}</span>}
+            </div>
+          </div>
+
           <input
-            className="fullname"
-            {...register("name")}
-            placeholder="Your Name"
-            type="text"
-            required={true}
+            {...register("email", {
+              required: "Email is required",
+              pattern: { value: /^\S+@\S+$/i, message: "Email is not valid" },
+            })}
+            placeholder="Your Email"
           />
+          {errors.email && <span>{errors.email.message}</span>}
+
+          <select {...register("country", { required: "Country is required" })}>
+            {countries.map((country) => (
+              <option key={country.id} value={country.country}>
+                {country.flag} | {country.country}
+              </option>
+            ))}
+          </select>
+          {errors.country && <span>{errors.country.message}</span>}
+
           <input
-            className="fullname"
-            {...register("lastName")}
-            placeholder="Your Last Name"
-            type="text"
-            required
+            {...register("password", { required: "Password is required" })}
+            type="password"
+            placeholder="Password"
           />
-          {errors.name && <span>This field is required</span>}
-        </div>
+          {errors.password && <span>{errors.password.message}</span>}
 
-        <input {...register("email")} placeholder="Your Email" />
-
-        <label>Country</label>
-        <select {...register("country")}>
-          {countries.map((country) => (
-            <option key={country.id} value={country.country}>
-              {country.flag} | {country.country}
-            </option>
-          ))}
-        </select>
-
-        <label>Birth</label>
-        <input {...register("birth")} type="date" />
-        <input
-          {...register("password")}
-          type="password"
-          placeholder="Password"
-          required
-        />
-        <input
-          {...register("confirmPassword")}
-          type="password"
-          placeholder="Confirm Password"
-          required
-        />
-        <input type="submit" value="Submit" />
-      </form>
-    </section>
+          <input type="submit" value="Submit" />
+        </form>
+      </section>
+    </div>
   );
 };

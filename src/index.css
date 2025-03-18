@@ -17,7 +17,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 62.5%;
 }
 
 a {
@@ -33,7 +32,7 @@ body {
 }
 
 h1 {
-  font-size: clamp(3.2rem, 5vw, 3.5rem);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
   border-bottom: #646cff 2px solid;
   max-width: 600px;
   width: 100%;
@@ -47,8 +46,6 @@ section {
   justify-content: center;
   align-items: center;
   margin: 0 auto;
-  /* max-width: 1200px; */
-  /* width: 100%; */
   min-height: 100vh;
   height: 100%;
 }
@@ -113,7 +110,7 @@ input[type="submit"]:hover {
 
 .flex {
   display: flex;
-  flex-direction: row;
+  align-items: center;
   gap: 1rem;
 }
 
