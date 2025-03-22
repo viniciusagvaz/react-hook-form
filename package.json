@@ -1,9 +1,14 @@
 {
-  "name": "hook-forms",
+
+  "name": "react-hook-forms",
+  "homepage": "https://viniciusvaz.github.io/react-hook-form",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",	
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
