@@ -15,7 +15,3 @@ This is a React application that demonstrates the use of forms with validation u
 - TypeScript
 - styled-components
 - react-hook-form
-
-## Deployment 
-
-The application is deployed on GitHub Pages and can be accessed at [[https://react-forms-ten.vercel.app](https://viniciusagvaz.github.io/react-hook-form/)/]([https://react-forms-ten.vercel.app/](https://viniciusagvaz.github.io/react-hook-form/)).
